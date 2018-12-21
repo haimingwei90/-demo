@@ -1,0 +1,15 @@
+
+.box{
+    padding-top: 50px;
+    width:800px;
+    height: 800px;
+}
+.right{
+    border:1px rgb(167, 162, 156);
+    width:30%;
+    height: auto;
+}
+.left{
+    width:70%;
+    height: auto;
+}
