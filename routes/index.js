@@ -3,7 +3,12 @@ var router = express.Router();
 /* GET home page. */
 var user={};
 router.get('/', function(req, res, next) {  
-  res.render('index');
+  console.log(req.session.user);
+  
+  if(req.session.user){
+    return res.render('chat',{user:req.session.user});
+  }
+    res.render('index');
 });
 router.post("/registe",function(req,res,next){
   const{name,password} = req.body;
@@ -14,11 +19,12 @@ router.post("/registe",function(req,res,next){
 })
 router.post("/login",function(req,res){
   const {name, password } = req.body;
-  console.log(name);
-  
+  req.session.user = {name,password};
   if (user[name]&&name == user[name].name &&
      password == user[name].password) {
-     res.render('chat', { user })
+     console.log(req.session.user+"session的用户");
+     
+     res.render('chat', { use:req.session.user })
   }
   res.redirect('/');
 })
