@@ -32,15 +32,17 @@ router.post("/login", async function(req,res){
   // console.log(await User.findOne({name:"a"}));
   const user = await User.findOne({name:name}); 
   console.log("数据库用户"+user.name);
-  
   // const query = User.find();
   // const user =await  query.$where('this.name === name');
   // console.log(user);
-  if (name == user.name &&
+  if (user.name && name == user.name &&
      password == user.password) {
-     console.log(req.session.user+"session的用户");
      
-     res.render('chat', { use:req.session.user, })
+     userlist.push(user.name);
+     req.session.user = userlist;
+     console.log(req.session.user);
+     
+     res.render('chat', { userlist:req.session.user })
   }
   res.redirect('/');
 });

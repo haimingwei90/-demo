@@ -21,7 +21,11 @@
                 <a href="/login">登录</a>
                 <a href="/registe">注册</a>
             </nav>
-
+            <ul>
+                <%userlist.forEach(rz=>{%>
+                  <li><%=rz%></li>  
+                <%})%>
+            </ul>
         </div>
 
         <div class="info">
