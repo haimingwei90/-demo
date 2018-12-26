@@ -24,7 +24,10 @@ server.listen(3000);
 
 io.on('connection',socket=>{
     console.log("测试成功");
-    
+    socket.on('say',date=>{
+      console.log(date);
+      io.emit("backsay",date);
+    })
 });
 
 
