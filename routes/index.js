@@ -24,7 +24,9 @@ router.post("/registe",async function(req,res,next){
 router.post("/login", async function(req,res){
   const {name, password } = req.body;
   req.session.user = {name,password};
-  if(req.session.user) const user = await User.findOne({name:name}); 
+  if(req.session.user){
+    const user = await User.findOne({ name: name });
+  } 
   // console.log("数据库用户"+user.name);
   if (user.name && name == user.name &&
      password == user.password) {
