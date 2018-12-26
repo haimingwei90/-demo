@@ -4,11 +4,6 @@ var User = require("./User.js");
 var userlist = [];
 /* GET home page. */
 router.get('/', function(req, res, next) {  
-  // req.session.user = req.session.user || null;
-  // console.log(req.session.user);  
-  // if(req.session.user){
-  //   return res.render('chat',{user:req.session.user});
-  // }
     res.render('index');
 });
 router.post("/registe",async function(req,res,next){
@@ -23,24 +18,21 @@ router.post("/registe",async function(req,res,next){
       console.log("save ok");
     }
   });
-  console.log("注册用户"+await User.find());
+  // console.log("注册用户"+await User.find());
   res.redirect('/');
 })
 router.post("/login", async function(req,res){
   const {name, password } = req.body;
   req.session.user = {name,password};
-  // console.log(await User.findOne({name:"a"}));
+
   const user = await User.findOne({name:name}); 
-  console.log("数据库用户"+user.name);
-  // const query = User.find();
-  // const user =await  query.$where('this.name === name');
-  // console.log(user);
+  // console.log("数据库用户"+user.name);
   if (user.name && name == user.name &&
      password == user.password) {
      
      userlist.push(user.name);
      req.session.user = userlist;
-     console.log(req.session.user);
+    //  console.log(req.session.user);
      
      res.render('chat', { userlist:req.session.user })
   }

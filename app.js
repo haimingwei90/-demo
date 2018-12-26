@@ -10,10 +10,23 @@ var session = require("express-session")({
   cookie:{maxAge:600000}
 })
 
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+server.listen(3000);
+
+io.on('connection',socket=>{
+    console.log("测试成功");
+    
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,4 +64,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+// module.exports = app;
