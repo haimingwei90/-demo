@@ -3,25 +3,36 @@
 
 <head>
   <style>
-    body.login>form{
+    /* .login{
+      margin-left: auto;
+      margin-right: auto;
+    } 
+    .registe{
+      margin-left: auto;
+      margin-right: auto;
+    }  */
+    .box{
       text-align: center;
-    }  
+    } 
   </style>
 <body>
-  <div class="login ">
-    <form action="/login" method="post">
-      <input type="text" name="name" >
-      <input type="test" name="password" >
-      <input type="submit" value="登录" >
-    </form>
-  </div>
-  <div class="registe">
+  <div class="box">
+    
+      <form action="/login" method="post">
+        <input type="text" name="name">
+        <input type="test" name="password">
+        <input type="submit" value="登录">
+      </form>
+   
+      <br>
       <form action="/registe" method="post">
         <input type="text" name="name">
         <input type="test" name="password">
         <input type="submit" value="注册">
-      </form>   
+      </form>
+
   </div>
+  
 </body>
 
 </html>
