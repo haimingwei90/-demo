@@ -13,7 +13,10 @@ body{
     border-bottom-style: solid ;
     border-bottom-width: 1px;
     width:100%;
-    height: 85%;
+    height: 86%;
+}
+.right>ul li{
+    list-style-type: none;
 }
 .left{
     
@@ -22,6 +25,7 @@ body{
     width:100%;
     height:5% ;
 }
+
 .left>nav{
     
     float:right;

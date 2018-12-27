@@ -21,17 +21,15 @@ router.post("/registe",async function(req,res,next){
   res.redirect('/');
 })
 router.post("/login", async function(req,res){
-  const name = req.body.name;
-  const password = req.body.password;
+  const {name ,password} = req.body
   req.session.user = {name,password}; 
-  var currentuser = req.session.user.name; 
-  if(req.session.user){
+  if(req.session.user.name){
     var userl = await User.findOne({ name: name });
+    if (name == userl.name && password == userl.password) {
+      res.render('chat', { user: req.session.user });
+    }
   }
   
-  if (name == userl.name &&password == userl.password) {     
-     res.render('chat',{currentuser});
-  }
   res.redirect('/');
 });
 router.get("/login",function(req,res){

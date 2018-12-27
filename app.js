@@ -10,6 +10,7 @@ var session = require("express-session")({
   cookie:{maxAge:600000}
 })
 
+var iosession = require("express-socket.io-session")(session);
 
 
 var index = require('./routes/index');
@@ -21,11 +22,12 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 server.listen(3000);
-
+io.use(iosession);
 io.on('connection',socket=>{
     console.log("测试成功");
     socket.on('say',date=>{
       console.log(date);
+      
       io.emit("backsay",date);
     })
 });
