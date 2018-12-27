@@ -18,24 +18,19 @@ router.post("/registe",async function(req,res,next){
       console.log("save ok");
     }
   });
-  // console.log("注册用户"+await User.find());
   res.redirect('/');
 })
 router.post("/login", async function(req,res){
-  const {name, password } = req.body;
-  req.session.user = {name,password};
+  const name = req.body.name;
+  const password = req.body.password;
+  req.session.user = {name,password}; 
+  var currentuser = req.session.user.name; 
   if(req.session.user){
-    const user = await User.findOne({ name: name });
-  } 
-  // console.log("数据库用户"+user.name);
-  if (user.name && name == user.name &&
-     password == user.password) {
-     
-     userlist.push(user.name);
-     req.session.user = userlist;
-    //  console.log(req.session.user);
-     
-     res.render('chat', { userlist:req.session.user })
+    var userl = await User.findOne({ name: name });
+  }
+  
+  if (name == userl.name &&password == userl.password) {     
+     res.render('chat',{currentuser});
   }
   res.redirect('/');
 });
