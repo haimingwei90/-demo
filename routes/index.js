@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var User = require("./User.js");
-var userlist = [];
 /* GET home page. */
 router.get('/', function(req, res, next) {  
     res.render('index');
@@ -11,6 +10,8 @@ router.post("/registe",async function(req,res,next){
   const{name,password} = req.body;
   // await User.remove();
   var user = new User({name:name,password:password});
+  console.log(user);
+  
   await user.save(function (err){
     if(err){
       console.log(err);
@@ -18,6 +19,7 @@ router.post("/registe",async function(req,res,next){
       console.log("save ok");
     }
   });
+
   res.redirect('/');
 })
 router.post("/login", async function(req,res){
